@@ -2,12 +2,14 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+        - '**'
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  quality:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,3 +39,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
