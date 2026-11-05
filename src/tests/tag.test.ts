@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Tag } from '../src/tag.js';
+import { Tag } from '../tag.js';
 
 describe('Tag', () => {
     it('renders a tag with attributes and content', () => {
