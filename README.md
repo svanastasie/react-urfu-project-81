@@ -12,23 +12,42 @@
 
 Учебный проект Хекслета: https://ru.hexlet.io/
 
-
 ## Стек
 
 - TypeScript
 
 ## Установка
 
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
-
 ```bash
 git clone https://github.com/svanastasie/react-urfu-project-81.git
 cd react-urfu-project-81
+make install
 ```
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```ts
+import HexletCode from '@hexlet/code';
+
+const template = { name: 'rob', job: 'hexlet', gender: 'm' };
+
+HexletCode.formFor(template, {}, () => {});
+// <form action="#" method="post"></form>
+
+HexletCode.formFor(template, { url: '/users' }, () => {});
+// <form action="/users" method="post"></form>
+```
+
+## Разработка
+
+| Команда              | Действие                            |
+| -------------------- | ----------------------------------- |
+| `make test`          | запустить тесты                     |
+| `make test-coverage` | тесты с отчётом о покрытии          |
+| `make lint`          | проверить код ESLint                |
+| `make typecheck`     | проверить типы                      |
+| `make check`         | линтер, типы и тесты одной командой |
+| `make build`         | собрать библиотеку в `dist/`        |
 
 ---
 
