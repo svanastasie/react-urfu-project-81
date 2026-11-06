@@ -19,3 +19,5 @@ coverage
 .env
 
 *.tsbuildinfo
+
+src/__fixtures__
