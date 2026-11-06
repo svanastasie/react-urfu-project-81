@@ -1,6 +1,12 @@
 # Генератор форм на Typescript
 
+[![CI](https://github.com/svanastasie/react-urfu-project-81/actions/workflows/ci.yml/badge.svg)](https://github.com/svanastasie/react-urfu-project-81/actions/workflows/ci.yml)
+
 [![hexlet-check](https://github.com/svanastasie/react-urfu-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/svanastasie/react-urfu-project-81/actions)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=svanastasie_react-urfu-project-81&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=svanastasie_react-urfu-project-81)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=svanastasie_react-urfu-project-81&metric=coverage)](https://sonarcloud.io/summary/new_code?id=svanastasie_react-urfu-project-81)
 
 Библиотека, с помощью которой удобно создавать формы в шаблонах сайтов. Она заметно сокращает код описания формы за счет автоматической обработки ошибок и различных контролов.
 
@@ -9,7 +15,7 @@
 
 ## Стек
 
-- JavaScript
+- TypeScript
 
 ## Установка
 
