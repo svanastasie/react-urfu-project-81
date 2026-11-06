@@ -38,6 +38,29 @@ HexletCode.formFor(template, { url: '/users' }, () => {});
 // <form action="/users" method="post"></form>
 ```
 
+### Поля формы
+
+Метод `input(name, attributes)` добавляет поле, значение которого берётся из шаблона. Опция `as: 'textarea'` создаёт `<textarea>`, остальные атрибуты добавляются к тегу или переопределяют значения по умолчанию.
+
+```ts
+const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
+    f.input('name', { class: 'user-input' });
+    f.input('job', { as: 'textarea', rows: 50 });
+});
+
+// <form action="#" method="post">
+//   <input name="name" type="text" value="rob" class="user-input">
+//   <textarea cols="20" rows="50" name="job">hexlet</textarea>
+// </form>
+```
+
+Если поля нет в шаблоне, будет выброшена ошибка:
+
+```ts
+HexletCode.formFor(template, {}, (f) => f.input('age'));
+// Error: Field 'age' does not exist in the template.
+```
+
 ## Разработка
 
 | Команда              | Действие                            |
