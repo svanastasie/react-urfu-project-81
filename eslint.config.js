@@ -5,14 +5,10 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
-    globalIgnores(['dist']),
+    globalIgnores(['dist', 'coverage']),
     {
         files: ['**/*.ts'],
-        extends: [
-            js.configs.recommended,
-            tseslint.configs.recommended,
-            eslintConfigPrettier,
-        ],
+        extends: [js.configs.recommended, tseslint.configs.recommended, eslintConfigPrettier],
         languageOptions: {
             globals: {
                 ...globals.node,
@@ -33,10 +29,7 @@ export default defineConfig([
             ],
             '@typescript-eslint/no-explicit-any': 'error',
             '@typescript-eslint/explicit-function-return-type': 'warn',
-            '@typescript-eslint/consistent-type-definitions': [
-                'error',
-                'interface',
-            ],
+            '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
         },
     },
 ]);

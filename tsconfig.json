@@ -12,7 +12,6 @@
         "noUncheckedIndexedAccess": true,
         "noUncheckedSideEffectImports": true,
         "verbatimModuleSyntax": true,
-        "importHelpers": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
         "sourceMap": true,
