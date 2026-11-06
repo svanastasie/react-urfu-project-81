@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+ import { describe, expect, it } from 'vitest';
 import { Tag } from '../tag.js';
 
 describe('Tag', () => {
@@ -26,5 +26,23 @@ describe('Tag', () => {
         });
 
         expect(tag.toString()).toBe('<input name="name">');
+    });
+
+    it('renders a tag without attributes', () => {
+        expect(new Tag('div', {}, 'text').toString()).toBe('<div>text</div>');
+    });
+
+    it('renders true as a boolean attribute and omits false', () => {
+        const tag = new Tag('input', { name: 'name', disabled: true, readonly: false });
+
+        expect(tag.toString()).toBe('<input name="name" disabled>');
+    });
+
+    it('escapes special characters in attribute values', () => {
+        const tag = new Tag('input', { value: '"><script>a&b</script>' });
+
+        expect(tag.toString()).toBe(
+            '<input value="&quot;&gt;&lt;script&gt;a&amp;b&lt;/script&gt;">',
+        );
     });
 });

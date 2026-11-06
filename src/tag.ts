@@ -1,4 +1,4 @@
-export type TagAttribute = Record<string, string | number | boolean | null | undefined>;
+export type TagAttributes = Record<string, string | number | boolean | null | undefined>;
 
 export class Tag {
     private static readonly singleTags = new Set([
@@ -20,7 +20,7 @@ export class Tag {
 
     constructor(
         public tagName: string,
-        public attributes: TagAttribute = {},
+        public attributes: TagAttributes = {},
         public textContent: string = '',
     ) {}
 
@@ -33,8 +33,20 @@ export class Tag {
 
     private buildAttributes(): string {
         return Object.entries(this.attributes)
-            .filter(([, value]) => value !== null && value !== undefined)
-            .map(([key, value]) => `${key}="${value}"`)
+            .flatMap(([key, value]) => {
+                if (value === null || value === undefined || value === false) {
+                    return [];
+                }
+                return value === true ? [key] : [`${key}="${Tag.escapeAttribute(String(value))}"`];
+            })
             .join(' ');
+    }
+
+    private static escapeAttribute(value: string): string {
+        return value
+            .replaceAll('&', '&amp;')
+            .replaceAll('"', '&quot;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;');
     }
 }
