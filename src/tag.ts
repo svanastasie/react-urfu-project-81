@@ -1,3 +1,5 @@
+import { escapeAttribute } from './escape.js';
+
 export type TagAttributes = Record<string, string | number | boolean | null | undefined>;
 
 export class Tag {
@@ -37,16 +39,8 @@ export class Tag {
                 if (value === null || value === undefined || value === false) {
                     return [];
                 }
-                return value === true ? [key] : [`${key}="${Tag.escapeAttribute(String(value))}"`];
+                return value === true ? [key] : [`${key}="${escapeAttribute(String(value))}"`];
             })
             .join(' ');
-    }
-
-    private static escapeAttribute(value: string): string {
-        return value
-            .replaceAll('&', '&amp;')
-            .replaceAll('"', '&quot;')
-            .replaceAll('<', '&lt;')
-            .replaceAll('>', '&gt;');
     }
 }
