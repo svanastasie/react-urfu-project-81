@@ -1,19 +1,25 @@
+import { FormBuilder, type FormTemplate } from './form-builder.js';
 import { Tag } from './tag.js';
 
-export type FormTemplate = Record<string, unknown>;
+export type { FormTemplate, InputOptions } from './form-builder.js';
+export { FormBuilder } from './form-builder.js';
 
 export interface FormOptions {
     url?: string;
+    method?: string;
 }
 
 const formFor = (
-    _template: FormTemplate,
+    template: FormTemplate,
     options: FormOptions,
-    _callback: (f: unknown) => void,
+    callback: (f: FormBuilder) => void,
 ): string => {
-    const { url = '#' } = options;
+    const { url = '#', method = 'post' } = options;
+    const builder = new FormBuilder(template);
 
-    return new Tag('form', { action: url, method: 'post' }).toString();
+    callback(builder);
+
+    return new Tag('form', { action: url, method }, builder.toString()).toString();
 };
 
 const HexletCode = { formFor };
