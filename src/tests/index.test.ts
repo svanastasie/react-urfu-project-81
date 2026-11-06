@@ -82,7 +82,9 @@ describe('HexletCode.formFor', () => {
 
             expect(form).toBe(
                 '<form action="#" method="post">' +
+                    '<label for="name">Name</label>' +
                     '<input name="name" type="text" value="">' +
+                    '<label for="job">Job</label>' +
                     '<textarea cols="20" rows="40" name="job"></textarea>' +
                     '</form>',
             );
@@ -96,6 +98,33 @@ describe('HexletCode.formFor', () => {
 
             expect(form).toContain('value="&lt;/textarea&gt;&lt;b&gt;&quot;hi&quot;&lt;/b&gt;"');
             expect(form).toContain('>&lt;/textarea&gt;&lt;b&gt;"hi"&lt;/b&gt;</textarea>');
+        });
+    });
+
+    describe('submit', () => {
+        it('generates a submit button with the default value', () => {
+            const form = HexletCode.formFor(template, {}, (f) => {
+                f.input('name');
+                f.submit();
+            });
+
+            expect(form).toBe(
+                '<form action="#" method="post">' +
+                    '<label for="name">Name</label>' +
+                    '<input name="name" type="text" value="rob">' +
+                    '<input type="submit" value="Save">' +
+                    '</form>',
+            );
+        });
+
+        it('uses a custom submit button value', () => {
+            const form = HexletCode.formFor(template, {}, (f) => {
+                f.submit('Wow');
+            });
+
+            expect(form).toBe(
+                '<form action="#" method="post">' + '<input type="submit" value="Wow">' + '</form>',
+            );
         });
     });
 });

@@ -19,6 +19,8 @@ export class FormBuilder {
 
         const rawValue = this.template[name];
         const value = rawValue === null || rawValue === undefined ? '' : String(rawValue);
+        const label = `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+        this.fields.push(new Tag('label', { for: name }, escapeText(label)));
 
         if (as === 'textarea') {
             this.fields.push(
@@ -28,6 +30,10 @@ export class FormBuilder {
         }
 
         this.fields.push(new Tag('input', { name, type: 'text', value, ...attributes }));
+    }
+
+    public submit(text = 'Save'): void {
+        this.fields.push(new Tag('input', { type: 'submit', value: text }));
     }
 
     public toString(): string {
