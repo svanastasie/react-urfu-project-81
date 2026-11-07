@@ -103,27 +103,30 @@ describe('HexletCode.formFor', () => {
 
     describe('submit', () => {
         it('generates a submit button with the default value', () => {
-            const form = HexletCode.formFor(template, {}, (f) => {
+            const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
                 f.input('name');
+                f.input('job', { as: 'textarea' });
                 f.submit();
             });
 
-            expect(form).toBe(
-                '<form action="#" method="post">' +
-                    '<label for="name">Name</label>' +
-                    '<input name="name" type="text" value="rob">' +
-                    '<input type="submit" value="Save">' +
-                    '</form>',
-            );
+            expect(form).toBe(readFixture('form-with-submit.html'));
         });
 
         it('uses a custom submit button value', () => {
-            const form = HexletCode.formFor(template, {}, (f) => {
+            const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
+                f.input('name');
+                f.input('job', { as: 'textarea' });
                 f.submit('Wow');
             });
 
+            expect(form).toBe(readFixture('form-with-custom-submit.html'));
+        });
+
+        it('escapes the submit button value', () => {
+            const form = HexletCode.formFor(template, {}, (f) => f.submit('"><b>'));
+
             expect(form).toBe(
-                '<form action="#" method="post">' + '<input type="submit" value="Wow">' + '</form>',
+                '<form action="#" method="post"><input type="submit" value="&quot;&gt;&lt;b&gt;"></form>',
             );
         });
     });

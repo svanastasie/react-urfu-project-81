@@ -1,8 +1,17 @@
-import { FormBuilder, type FormTemplate } from './form-builder.js';
-import { Tag } from './tag.js';
+import { FormBuilder } from './form-builder.js';
+import { renderForm } from './render.js';
+import type { FormTemplate } from './types.js';
 
-export type { FormTemplate, InputOptions } from './form-builder.js';
+export type {
+    Form,
+    FormField,
+    FormTemplate,
+    InputField,
+    InputOptions,
+    SubmitField,
+} from './types.js';
 export { FormBuilder } from './form-builder.js';
+export { renderForm } from './render.js';
 
 export interface FormOptions {
     url?: string;
@@ -19,7 +28,7 @@ const formFor = (
 
     callback(builder);
 
-    return new Tag('form', { action: url, method }, builder.toString()).toString();
+    return renderForm({ action: url, method, fields: builder.fields });
 };
 
 const HexletCode = { formFor };
