@@ -13,7 +13,7 @@ describe('renderForm', () => {
         });
 
         expect(html).toBe(
-            '<form action="/users" method="get">' +
+            '<form method="get" action="/users">' +
                 '<label for="email">Email</label>' +
                 '<input name="email" type="text" value="a@b.c">' +
                 '<input type="submit" value="Go">' +

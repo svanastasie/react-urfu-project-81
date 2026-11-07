@@ -18,4 +18,4 @@ const renderField = (field: FormField): string => {
 };
 
 export const renderForm = ({ action, method, fields }: Form): string =>
-    new Tag('form', { action, method }, fields.map(renderField).join('')).toString();
+    new Tag('form', { method, action }, fields.map(renderField).join('')).toString();

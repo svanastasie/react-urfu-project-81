@@ -32,10 +32,10 @@ import HexletCode from '@hexlet/code';
 const template = { name: 'rob', job: 'hexlet', gender: 'm' };
 
 HexletCode.formFor(template, {}, () => {});
-// <form action="#" method="post"></form>
+// <form method="post" action="#"></form>
 
 HexletCode.formFor(template, { url: '/users' }, () => {});
-// <form action="/users" method="post"></form>
+// <form method="post" action="/users"></form>
 ```
 
 ### Поля формы
@@ -49,7 +49,7 @@ const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
     f.submit('Wow');
 });
 
-// <form action="#" method="post">
+// <form method="post" action="#">
 //   <label for="name">Name</label>
 //   <input name="name" type="text" value="rob" class="user-input">
 //   <label for="job">Job</label>

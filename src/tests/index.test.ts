@@ -14,19 +14,19 @@ describe('HexletCode.formFor', () => {
         it('generates an empty form with the default action', () => {
             const form = HexletCode.formFor(template, {}, () => {});
 
-            expect(form).toBe('<form action="#" method="post"></form>');
+            expect(form).toBe('<form method="post" action="#"></form>');
         });
 
         it('uses the url option as the form action', () => {
             const form = HexletCode.formFor(template, { url: '/users' }, () => {});
 
-            expect(form).toBe('<form action="/users" method="post"></form>');
+            expect(form).toBe('<form method="post" action="/users"></form>');
         });
 
         it('uses the method option', () => {
             const form = HexletCode.formFor(template, { method: 'get' }, () => {});
 
-            expect(form).toBe('<form action="#" method="get"></form>');
+            expect(form).toBe('<form method="get" action="#"></form>');
         });
     });
 
@@ -81,7 +81,7 @@ describe('HexletCode.formFor', () => {
             });
 
             expect(form).toBe(
-                '<form action="#" method="post">' +
+                '<form method="post" action="#">' +
                     '<label for="name">Name</label>' +
                     '<input name="name" type="text" value="">' +
                     '<label for="job">Job</label>' +
@@ -126,7 +126,7 @@ describe('HexletCode.formFor', () => {
             const form = HexletCode.formFor(template, {}, (f) => f.submit('"><b>'));
 
             expect(form).toBe(
-                '<form action="#" method="post"><input type="submit" value="&quot;&gt;&lt;b&gt;"></form>',
+                '<form method="post" action="#"><input type="submit" value="&quot;&gt;&lt;b&gt;"></form>',
             );
         });
     });
