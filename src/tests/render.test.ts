@@ -7,7 +7,14 @@ describe('renderForm', () => {
             action: '/users',
             method: 'get',
             fields: [
-                { kind: 'input', name: 'email', label: 'Email', value: 'a@b.c', attributes: {} },
+                {
+                    kind: 'input',
+                    name: 'email',
+                    label: 'Email',
+                    labelAttributes: {},
+                    value: 'a@b.c',
+                    attributes: {},
+                },
                 { kind: 'submit', value: 'Go' },
             ],
         });

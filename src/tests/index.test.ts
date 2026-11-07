@@ -65,6 +65,24 @@ describe('HexletCode.formFor', () => {
             expect(form).toBe(readFixture('form-with-textarea-override.html'));
         });
 
+        it('renders a custom label text and label attributes', () => {
+            const form = HexletCode.formFor(template, {}, (f) => {
+                f.input('name', {
+                    label: 'User',
+                    labelHtml: { class: 'form-label', id: 'name-label' },
+                });
+                f.submit('Ok');
+            });
+
+            expect(form).toBe(readFixture('form-with-label-options.html'));
+        });
+
+        it('escapes the custom label text', () => {
+            const form = HexletCode.formFor(template, {}, (f) => f.input('name', { label: '<b>' }));
+
+            expect(form).toContain('<label for="name">&lt;b&gt;</label>');
+        });
+
         it('throws if the field does not exist in the template', () => {
             expect(() =>
                 HexletCode.formFor(template, { url: '/users' }, (f) => {

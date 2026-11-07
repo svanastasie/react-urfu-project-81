@@ -58,6 +58,19 @@ const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
 // </form>
 ```
 
+Текст подписи и её атрибуты можно переопределить опциями `label` и `labelHtml`:
+
+```ts
+HexletCode.formFor(template, {}, (f) => {
+    f.input('name', { label: 'User', labelHtml: { class: 'form-label', id: 'name-label' } });
+});
+
+// <form method="post" action="#">
+//   <label for="name" class="form-label" id="name-label">User</label>
+//   <input name="name" type="text" value="rob">
+// </form>
+```
+
 Если поля нет в шаблоне, будет выброшена ошибка:
 
 ```ts

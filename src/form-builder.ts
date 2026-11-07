@@ -1,3 +1,4 @@
+import type { TagAttributes } from './tag.js';
 import type { FormField, FormTemplate, InputOptions } from './types.js';
 
 const toLabel = (name: string): string => `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
@@ -11,13 +12,17 @@ export class FormBuilder {
         return this.formFields;
     }
 
-    public input(name: string, { as = 'input', ...attributes }: InputOptions = {}): void {
+    public input(
+        name: string,
+        { as = 'input', label = toLabel(name), labelHtml = {}, ...attributes }: InputOptions = {},
+    ): void {
         this.formFields.push({
             kind: as,
             name,
-            label: toLabel(name),
+            label,
+            labelAttributes: labelHtml,
             value: this.getValue(name),
-            attributes,
+            attributes: attributes as TagAttributes,
         });
     }
 

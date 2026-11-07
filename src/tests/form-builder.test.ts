@@ -16,10 +16,18 @@ describe('FormBuilder', () => {
                 kind: 'input',
                 name: 'name',
                 label: 'Name',
+                labelAttributes: {},
                 value: 'rob',
                 attributes: { class: 'user-input' },
             },
-            { kind: 'textarea', name: 'job', label: 'Job', value: 'hexlet', attributes: {} },
+            {
+                kind: 'textarea',
+                name: 'job',
+                label: 'Job',
+                labelAttributes: {},
+                value: 'hexlet',
+                attributes: {},
+            },
             { kind: 'submit', value: 'Save' },
         ]);
     });

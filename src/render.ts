@@ -7,8 +7,8 @@ const renderField = (field: FormField): string => {
         return new Tag('input', { type: 'submit', value: field.value }).toString();
     }
 
-    const { name, label, value, attributes } = field;
-    const labelTag = new Tag('label', { for: name }, escapeText(label));
+    const { name, label, labelAttributes, value, attributes } = field;
+    const labelTag = new Tag('label', { for: name, ...labelAttributes }, escapeText(label));
     const control =
         field.kind === 'textarea'
             ? new Tag('textarea', { cols: 20, rows: 40, name, ...attributes }, escapeText(value))
