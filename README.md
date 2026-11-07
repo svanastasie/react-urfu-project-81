@@ -40,17 +40,21 @@ HexletCode.formFor(template, { url: '/users' }, () => {});
 
 ### Поля формы
 
-Метод `input(name, attributes)` добавляет поле, значение которого берётся из шаблона. Опция `as: 'textarea'` создаёт `<textarea>`, остальные атрибуты добавляются к тегу или переопределяют значения по умолчанию.
+Метод `input(name, attributes)` добавляет поле, значение которого берётся из шаблона, и подпись `<label>` к нему. Опция `as: 'textarea'` создаёт `<textarea>`, остальные атрибуты добавляются к тегу или переопределяют значения по умолчанию. Метод `submit(text)` добавляет кнопку отправки, по умолчанию с текстом `Save`.
 
 ```ts
 const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
     f.input('name', { class: 'user-input' });
     f.input('job', { as: 'textarea', rows: 50 });
+    f.submit('Wow');
 });
 
 // <form action="#" method="post">
+//   <label for="name">Name</label>
 //   <input name="name" type="text" value="rob" class="user-input">
+//   <label for="job">Job</label>
 //   <textarea cols="20" rows="50" name="job">hexlet</textarea>
+//   <input type="submit" value="Wow">
 // </form>
 ```
 
@@ -60,6 +64,15 @@ const form = HexletCode.formFor(template, { method: 'post' }, (f) => {
 HexletCode.formFor(template, {}, (f) => f.input('age'));
 // Error: Field 'age' does not exist in the template.
 ```
+
+## Устройство
+
+Форма хранится как структура данных, отдельно от HTML:
+
+1. `FormBuilder` (`f` в коллбэке) собирает список полей: `{ kind: 'input', name, label, value, attributes }` и `{ kind: 'submit', value }`.
+2. `renderForm` превращает эту структуру в HTML через `Tag`.
+
+Чтобы вывести форму иначе (шаблонизатор, Bootstrap, JSON), достаточно написать другую функцию вместо `renderForm`: билдер менять не нужно.
 
 ## Разработка
 
